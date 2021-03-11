@@ -4,10 +4,16 @@
              x:Class="CollectionViewSample.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand"
-                 VerticalOptions="CenterAndExpand">
+    <Grid HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height=".5*" />
+        </Grid.RowDefinitions>
+
         <CollectionView ItemsSource="{Binding Categories}"
-                        BackgroundColor="Yellow">
+                        BackgroundColor="LightSlateGray"
+                        Grid.Row="0">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding Name}" />
@@ -15,14 +21,19 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <StackLayout BindableLayout.ItemsSource="{Binding Categories}"
-                     BackgroundColor="Green">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}" />
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
-    </StackLayout>
+        <ScrollView HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Grid.Row="1">
+            <StackLayout HorizontalOptions="FillAndExpand"
+                         BindableLayout.ItemsSource="{Binding Categories}"
+                         BackgroundColor="LightGray">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 
 </ContentPage>

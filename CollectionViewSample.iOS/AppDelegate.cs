@@ -19,6 +19,7 @@ namespace CollectionViewSample.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Syncfusion.XForms.iOS.TabView.SfTabViewRenderer.Init();
+            Syncfusion.SfPullToRefresh.XForms.iOS.SfPullToRefreshRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

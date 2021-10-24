@@ -16,6 +16,7 @@ namespace CollectionViewSample.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         [Reactive] public ObservableCollection<object> Items { get; set; }
+        [Reactive] public bool IsRefreshing { get; set; }
 
         private DelegateCommand loadItemsCommand;
         public DelegateCommand LoadItemsCommand =>
@@ -34,6 +35,7 @@ namespace CollectionViewSample.ViewModels
 
         private void Reload()
         {
+            IsRefreshing = true;
             Items = new ObservableCollection<object>
             {
                 "Item 1",
@@ -47,6 +49,7 @@ namespace CollectionViewSample.ViewModels
                 "Item 9",
                 "Item 10",
             };
+            IsRefreshing = false;
         }
     }
 }

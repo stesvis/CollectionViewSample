@@ -201,6 +201,9 @@
     <PackageReference Include="ReactiveUI.Fody">
       <Version>16.2.6</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
+      <Version>19.3.0.46</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>19.3.0.46</Version>
     </PackageReference>

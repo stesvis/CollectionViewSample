@@ -4,7 +4,8 @@
              x:Class="CollectionViewSample.Views.MainPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:CollectionViewSample"
-             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms">
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:pullToRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -16,32 +17,37 @@
         <tabView:SfTabView BackgroundColor="#FAFAFA">
             <tabView:SfTabItem Title="TAB 1">
                 <tabView:SfTabItem.Content>
-                    <StackLayout BackgroundColor="White">
-                        <Button Text="Load Items"
-                                Command="{Binding LoadItemsCommand}" />
+                    <pullToRefresh:SfPullToRefresh IsClippedToBounds="False"
+                                                   IsRefreshing="{Binding IsRefreshing}">
+                        <pullToRefresh:SfPullToRefresh.PullableContent>
+                            <StackLayout BackgroundColor="White">
+                                <Button Text="Load Items"
+                                        Command="{Binding LoadItemsCommand}" />
 
-                        <!--  ***********************************************************  -->
-                        <CollectionView ItemsSource="{Binding Items}">
-                            <CollectionView.EmptyView>
-                                <Grid>
-                                    <Label Text="No items to show"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center" />
-                                </Grid>
-                            </CollectionView.EmptyView>
-                            <CollectionView.ItemsLayout>
-                                <LinearItemsLayout Orientation="Vertical"
-                                                   ItemSpacing="10" />
-                            </CollectionView.ItemsLayout>
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Label Text="{Binding .}"
-                                           Padding="10,0" />
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                        <!--  ***********************************************************  -->
-                    </StackLayout>
+                                <!--  ***********************************************************  -->
+                                <CollectionView ItemsSource="{Binding Items}">
+                                    <CollectionView.EmptyView>
+                                        <Grid>
+                                            <Label Text="No items to show"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                                        </Grid>
+                                    </CollectionView.EmptyView>
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Vertical"
+                                                           ItemSpacing="10" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding .}"
+                                                   Padding="10,0" />
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <!--  ***********************************************************  -->
+                            </StackLayout>
+                        </pullToRefresh:SfPullToRefresh.PullableContent>
+                    </pullToRefresh:SfPullToRefresh>
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
             <tabView:SfTabItem Title="TAB 2">

@@ -4,19 +4,16 @@ using System.Text;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace CollectionViewSample.ViewModels
 {
-    public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
+    public class ViewModelBase : ReactiveObject, IInitialize, INavigationAware, IDestructible
     {
         protected INavigationService NavigationService { get; private set; }
 
-        private string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
+        [Reactive] public string Title { get; set; }
 
         public ViewModelBase(INavigationService navigationService)
         {
@@ -25,22 +22,18 @@ namespace CollectionViewSample.ViewModels
 
         public virtual void Initialize(INavigationParameters parameters)
         {
-
         }
 
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {
-
         }
 
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
-
         }
 
         public virtual void Destroy()
         {
-
         }
     }
 }

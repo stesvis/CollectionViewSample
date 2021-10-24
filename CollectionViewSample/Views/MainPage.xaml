@@ -2,38 +2,59 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectionViewSample.Views.MainPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:CollectionViewSample"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms">
 
-    <Grid HorizontalOptions="FillAndExpand"
-          VerticalOptions="FillAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".5*" />
-            <RowDefinition Height=".5*" />
-        </Grid.RowDefinitions>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverterConverter x:Key="InverterConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <CollectionView ItemsSource="{Binding Categories}"
-                        BackgroundColor="LightSlateGray"
-                        Grid.Row="0">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}" />
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+    <ContentPage.Content>
+        <tabView:SfTabView BackgroundColor="#FAFAFA">
+            <tabView:SfTabItem Title="TAB 1">
+                <tabView:SfTabItem.Content>
+                    <StackLayout BackgroundColor="White">
+                        <Button Text="Load Items"
+                                Command="{Binding LoadItemsCommand}" />
 
-        <ScrollView HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand"
-                    Grid.Row="1">
-            <StackLayout HorizontalOptions="FillAndExpand"
-                         BindableLayout.ItemsSource="{Binding Categories}"
-                         BackgroundColor="LightGray">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Name}" />
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
-        </ScrollView>
-    </Grid>
+                        <!--  ***********************************************************  -->
+                        <CollectionView ItemsSource="{Binding Items}">
+                            <CollectionView.EmptyView>
+                                <Grid>
+                                    <Label Text="No items to show"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Grid>
+                            </CollectionView.EmptyView>
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical"
+                                                   ItemSpacing="10" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}"
+                                           Padding="10,0" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <!--  ***********************************************************  -->
+                    </StackLayout>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="TAB 2">
+                <tabView:SfTabItem.Content>
+                    <Grid BackgroundColor="White">
+                        <Label Text="Tab 2"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+        </tabView:SfTabView>
+    </ContentPage.Content>
+
 
 </ContentPage>
